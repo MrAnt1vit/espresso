@@ -6,6 +6,16 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QTableWidgetItem
 
 
+class AddChange(QWidget):
+    def __init__(self, *args):
+        super().__init__()
+        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.initUI(args)
+
+    def initUI(self, args):
+        print(args)
+
+
 class Main(QWidget):
     def __init__(self):
         super().__init__()
@@ -15,6 +25,8 @@ class Main(QWidget):
     def initUI(self):
         self.setWindowTitle('Coffee')
         self.setFixedSize(self.size())
+        self.changeBtn.clicked.connect(self.change)
+        self.addBtn.clicked.connect(self.add)
         self.db = sqlite3.connect('cofee.sqlite')
         self.cur = self.db.cursor()
         self.a = self.cur.execute("""select * from info""").fetchall()
@@ -28,6 +40,12 @@ class Main(QWidget):
             ['ID', 'Название', 'Степень обжарки', 'Молотый / В зернах', 'Вкус', 'Цена', 'Объем'])
         self.table.resizeColumnsToContents()
         self.view_table()
+
+    def change(self):
+        print('c')
+
+    def add(self):
+        print('a')
 
     def view_table(self):
         self.table.setRowCount(0)
