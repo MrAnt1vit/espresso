@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>233</width>
-    <height>410</height>
+    <height>422</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -114,7 +114,14 @@
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="size"/>
+    <widget class="QLineEdit" name="sz"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="saveBtn">
+     <property name="text">
+      <string>Сохранить</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
