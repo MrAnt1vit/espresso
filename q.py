@@ -5,11 +5,14 @@ from PyQt5 import uic
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QTableWidgetItem
 
+from UI import addEditCoffeeForm, table
 
-class AddChange(QWidget):
+
+class AddChange(QWidget, addEditCoffeeForm.Ui_Form):
     def __init__(self, main, title):
         super().__init__()
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
+        # uic.loadUi('addEditCoffeeForm.ui', self)
         self.initUI(main, title)
 
     def initUI(self, main, title):
@@ -50,10 +53,11 @@ class AddChange(QWidget):
         self.close()
 
 
-class Main(QWidget):
+class Main(QWidget, table.Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('table.ui', self)
+        self.setupUi(self)
+        # uic.loadUi('table.ui', self)
         self.initUI()
 
     def initUI(self):
@@ -64,7 +68,7 @@ class Main(QWidget):
         self.table.cellClicked.connect(self.set_id)
         self.out = ['', '', 0, '', '', '']
         self.id = -1
-        self.db = sqlite3.connect('cofee.sqlite')
+        self.db = sqlite3.connect('data/cofee.sqlite')
         self.cur = self.db.cursor()
         self.a = self.cur.execute("""select * from info""").fetchall()
         for i in range(len(self.a)):
